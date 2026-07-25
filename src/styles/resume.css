@@ -12,10 +12,11 @@
   font-size: 11.2pt;
   line-height: 1.4;
 }
-.resume header { display: grid; grid-template-columns: 27% 73%; height: 30mm; align-items: start; }
+.resume header { display: grid; grid-template-columns: 27% 73%; min-height: 30mm; align-items: start; }
 .resume h1 { margin: 4mm 0 0; font-size: 34pt; font-weight: 400; letter-spacing: .05em; line-height: 1; }
 .contact { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 6mm; row-gap: 2mm; padding-top: 2mm; }
-.contact p { margin: 0; font-size: 11.2pt; line-height: 1.35; white-space: nowrap; }
+.contact p { min-width: 0; margin: 0; font-size: 11.2pt; line-height: 1.35; overflow-wrap: anywhere; }
+.contact .contact-blog { grid-column: 1 / -1; }
 .bluebar { height: 3.2mm; margin: 0 -11mm 2.4mm; background: #2d82d2; }
 .resume-section { margin: 0 0 2.6mm; }
 .resume-section h2 { display: flex; align-items: center; gap: 3mm; margin: 2.8mm 0 1.7mm 7mm; color: #2d82d2; font-size: 11.5pt; font-weight: 400; }
@@ -34,13 +35,6 @@
 .project ol { margin: 0 0 0 7.5mm; padding-left: 4.5mm; }
 .project li { margin: .45mm 0; padding-left: .5mm; text-align: justify; }
 .evaluation { margin: 0; padding: 1.4mm 2mm; text-align: justify; text-indent: 2em; background: #fbfcfd; }
-.template-modern { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
-.template-modern .bluebar { height: 1.4mm; background: #44505f; }
-.template-modern .resume-section h2 { color: #323b46; font-weight: 600; }
-.template-modern .resume-section h2::after { background: #dce1e6; }
-.template-modern .skills { list-style: square; }
-.template-modern .jobs > div:nth-child(odd), .template-modern .education, .template-modern .evaluation { background: #f5f6f7; }
-
 @media (max-width: 1000px) {
   .preview-wrap { padding: 16px; }
   .resume { transform-origin: top center; }

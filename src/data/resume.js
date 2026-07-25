@@ -1,7 +1,8 @@
 import { createDefaultResume } from './defaultResume';
+import { templates } from '../templates/templateRegistry';
 
 export const STORAGE_KEY = 'resume-editor-data';
-export const TEMPLATE_IDS = ['classic', 'modern'];
+export const TEMPLATE_IDS = templates.map(template => template.id);
 
 export function normalizeResume(value) {
   if (!value || typeof value !== 'object') return createDefaultResume();

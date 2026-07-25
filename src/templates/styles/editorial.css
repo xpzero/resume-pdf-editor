@@ -1,0 +1,15 @@
+.template-editorial { font-family: Georgia, "Songti SC", "STSong", serif; color: #2f2928; }
+.template-editorial .editorial-header { display: block; height: auto; padding: 4mm 0 3mm; text-align: center; border-bottom: 1px solid #b98a76; }
+.template-editorial .editorial-header > p { margin: 0; color: #713f35; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 10pt; letter-spacing: .22em; text-transform: uppercase; }
+.template-editorial h1 { margin: 2mm 0 3mm; color: #713f35; font-size: 34pt; font-weight: 400; letter-spacing: .16em; }
+.template-editorial .editorial-contact { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4mm 3mm; text-align: left; }
+.template-editorial .editorial-contact p { min-width: 0; font-size: 9.5pt; overflow-wrap: anywhere; }
+.template-editorial .editorial-contact .contact-blog { grid-column: 1 / -1; }
+.template-editorial .editorial-intro { display: flex; align-items: center; gap: 3mm; margin: 2.6mm 0 1mm; color: #a36e5c; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 8pt; letter-spacing: .2em; }
+.template-editorial .editorial-intro i { height: 1px; flex: 1; background: #d9c5bc; }
+.template-editorial .editorial-top { display: grid; grid-template-columns: 38% 1fr; gap: 7mm; }
+.template-editorial .resume-section h2 { margin-left: 0; color: #713f35; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 10.5pt; font-weight: 600; letter-spacing: .12em; }
+.template-editorial .resume-section h2::after { background: #d9c5bc; }
+.template-editorial .skills { list-style: "—  "; }
+.template-editorial .education, .template-editorial .evaluation { background: #fbf7f4; }
+.template-editorial .project-head { border-bottom-color: #e6d7d0; }

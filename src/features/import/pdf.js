@@ -4,7 +4,7 @@ import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 GlobalWorkerOptions.workerSrc = workerUrl;
 
 function emptyResume(templateId) {
-  return { templateId, name: '', birth: '', salary: '', phone: '', role: '', email: '', blog: '', school: '', education: '', major: '', educationDate: '', skills: [], jobs: [], projects: [], evaluation: '' };
+  return { templateId, name: '', birth: '', phone: '', role: '', email: '', blog: '', school: '', education: '', major: '', educationDate: '', skills: [], jobs: [], projects: [], evaluation: '' };
 }
 
 export async function importPdf(file, templateId = 'classic') {

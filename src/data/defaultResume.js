@@ -1,6 +1,6 @@
 export const defaultResume = {
   templateId: 'classic',
-  name: '徐培珊', birth: '1997.02', salary: '面议', phone: '18106505028', role: '前端开发',
+  name: '徐培珊', birth: '1997.02', phone: '18106505028', role: '前端开发',
   email: 'x73mail@163.com', blog: 'https://xpzero.github.io/blog/',
   school: '平顶山学院', education: '本科', major: '软件工程', educationDate: '2016.09-2020.07',
   skills: [

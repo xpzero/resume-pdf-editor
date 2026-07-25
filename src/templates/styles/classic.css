@@ -1,0 +1,16 @@
+.template-classic { color: #202a35; }
+.template-classic header { grid-template-columns: 28% 72%; min-height: 30mm; border-bottom: 1px solid #cad8e4; }
+.template-classic h1 { margin-top: 4mm; color: #183450; font-size: 34pt; font-weight: 400; letter-spacing: .06em; }
+.template-classic .contact { column-gap: 7mm; row-gap: 1.6mm; padding-top: 2.5mm; }
+.template-classic .contact p { font-size: 10.7pt; }
+.template-classic .contact .contact-blog { color: inherit; }
+.template-classic .bluebar { height: 1.6mm; background: #2d82d2; }
+.template-classic .resume-section { margin-bottom: 2.8mm; }
+.template-classic .resume-section h2 { margin-left: 0; color: #2d82d2; font-size: 11pt; font-weight: 600; letter-spacing: .05em; }
+.template-classic .resume-section h2::after { background: #cad8e4; }
+.template-classic .skills { list-style: "•  "; }
+.template-classic .education { background: transparent; }
+.template-classic .jobs > div:nth-child(odd) { background: transparent; }
+.template-classic .jobs > div { border-bottom: 0; }
+.template-classic .project-head { border-bottom: 0; }
+.template-classic .evaluation { background: transparent; }

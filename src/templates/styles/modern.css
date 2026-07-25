@@ -1,0 +1,6 @@
+.template-modern { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+.template-modern .bluebar { height: 1.4mm; background: #44505f; }
+.template-modern .resume-section h2 { color: #323b46; font-weight: 600; }
+.template-modern .resume-section h2::after { background: #dce1e6; }
+.template-modern .skills { list-style: square; }
+.template-modern .jobs > div:nth-child(odd), .template-modern .education, .template-modern .evaluation { background: #f5f6f7; }

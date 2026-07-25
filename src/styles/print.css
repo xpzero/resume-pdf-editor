@@ -1,9 +1,10 @@
 @media print {
   @page { size: A4; margin: 11.5mm 11mm 13mm; }
-  body { background: #fff; }
+  html, body { background: #fff !important; }
   .editor, .workspace-header, .ant-modal-root { display: none; }
   .app, .preview-wrap { display: block; padding: 0; }
-  .resume { width: auto; min-height: 0; padding: 0; box-shadow: none; page-break-after: always; }
+  .preview-panel { display: block !important; opacity: 1 !important; overflow: visible; transform: none !important; }
+  .resume { width: 188mm; min-height: 0; padding: 0; box-shadow: none; page-break-after: always; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .resume * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   .project { break-inside: avoid; }
-  .bluebar { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 }
