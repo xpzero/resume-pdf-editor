@@ -2,6 +2,8 @@
 
 一个本地优先的 React 简历编辑器，支持多份简历、模板预览、Markdown/PDF 导入导出与基于 LLM 的简历表达优化。PDF 使用浏览器原生打印生成，保证文字可复制、版式清晰。
 
+![简历工作台截图](assets/resume-workspace.png)
+
 ## 运行
 
 需安装 Node `20.19+` 或 `22.12+` 及 pnpm：
@@ -41,7 +43,6 @@ pnpm dev:backend
 
 ```text
 https://api.openai.com/v1
-https://www.rightapi.ai/codex/v1/chat/completions
 ```
 
 不要将 API Key 提交到 Git。若使用非本地启动方式，请在后端环境中确认可以访问对应 LLM 服务。
