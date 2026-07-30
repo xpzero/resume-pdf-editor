@@ -86,6 +86,7 @@
 .ai-project-diff { padding-top: 14px; margin-top: 14px; border-top: 1px solid #dbe4ee; }
 .ai-project-diff:first-of-type { padding-top: 0; margin-top: 0; border-top: 0; }
 .ai-no-change { padding: 10px 12px; color: #92400e; background: #fffbeb; border: 1px solid #fde68a; border-radius: 6px; }
+.jd-keyword-coverage p { margin: 6px 0; overflow-wrap: anywhere; }
 .ai-field-select { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 14px; padding: 10px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; }
 .resume-create { display: flex; gap: 8px; margin-bottom: 12px; }
 .resume-list { display: grid; gap: 6px; }
