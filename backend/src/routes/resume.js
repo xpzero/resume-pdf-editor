@@ -9,7 +9,7 @@ const scopedFields = {
   evaluation: ['evaluation']
 };
 
-function mergeOptimizedResume(original, optimized, scope, targetIndex, targetField, targetPointIndex) {
+export function mergeOptimizedResume(original, optimized, scope, targetIndex, targetField, targetPointIndex) {
   if (scope === 'all') return { ...original, ...optimized };
 
   const result = { ...original };

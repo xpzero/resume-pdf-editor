@@ -1,0 +1,9 @@
+.template-ats { color: #111; font-family: Arial, "PingFang SC", sans-serif; }
+.template-ats header { min-height: 24mm; border-bottom: 1px solid #111; }
+.template-ats h1 { color: #111; font-size: 30pt; font-weight: 700; }
+.template-ats .bluebar { display: none; }
+.template-ats .resume-section h2 { margin-left: 0; color: #111; font-weight: 700; }
+.template-ats .resume-section h2::after { background: #111; }
+.template-ats .education, .template-ats .jobs > div, .template-ats .evaluation { background: transparent; }
+.template-ats .jobs > div, .template-ats .project-head { border-bottom: 1px solid #ddd; }
+.template-ats .skills { list-style: disc; }

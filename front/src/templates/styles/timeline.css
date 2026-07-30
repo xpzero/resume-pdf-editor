@@ -1,0 +1,8 @@
+.template-timeline { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; }
+.template-timeline .bluebar { height: 1.4mm; background: #0f766e; }
+.template-timeline .resume-section h2 { margin-left: 0; color: #0f766e; font-weight: 700; }
+.template-timeline .resume-section h2::after { background: #99f6e4; }
+.template-timeline .jobs { margin-left: 5mm; border-left: 1px solid #99f6e4; }
+.template-timeline .jobs > div { position: relative; grid-template-columns: 25% 58% 17%; padding: 1.2mm 0 1.2mm 5mm; background: transparent !important; }
+.template-timeline .jobs > div::before { position: absolute; top: 50%; left: -1.7mm; width: 2.4mm; height: 2.4mm; background: #0f766e; border: .6mm solid #e6fffb; border-radius: 50%; content: ""; transform: translateY(-50%); }
+.template-timeline .project { padding-left: 5mm; border-left: 1px solid #ccfbf1; }

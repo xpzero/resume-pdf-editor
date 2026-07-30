@@ -6,6 +6,12 @@
     "dev": "pnpm --parallel --filter front --filter resume-editor-backend dev",
     "dev:front": "pnpm --filter front dev",
     "dev:backend": "pnpm --filter resume-editor-backend dev",
-    "build": "pnpm --filter front build"
+    "build": "pnpm --filter front build",
+    "test": "pnpm test:unit",
+    "test:unit": "pnpm --filter front test && pnpm --filter resume-editor-backend test",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
   }
 }

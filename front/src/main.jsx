@@ -11,12 +11,14 @@ import { OptimizeDialog } from './features/ai/OptimizeDialog';
 import { OptimizeDiffDialog } from './features/ai/OptimizeDiffDialog';
 import { loadLlmConfig } from './features/ai/llmConfig';
 import { ResumeListDialog } from './components/editor/ResumeListDialog';
-import { createResume, loadWorkspace, saveWorkspace } from './data/workspace';
+import { createHistorySnapshot, createResume, loadWorkspace, MAX_RESUME_HISTORY, saveWorkspace } from './data/workspace';
 import { getResumeChecks } from './features/quality/checks';
+import { mergeDraft } from './features/ai/mergeDraft';
 import 'antd/dist/reset.css';
 import './style.css';
 
 const ImportDialog = lazy(() => import('./features/import/ImportDialog').then(module => ({ default: module.ImportDialog })));
+const ResumeHistoryDialog = lazy(() => import('./components/editor/ResumeHistoryDialog').then(module => ({ default: module.ResumeHistoryDialog })));
 const loadResumePreview = () => import('./components/resume/ResumePreview');
 const ResumePreview = lazy(() => loadResumePreview().then(module => ({ default: module.ResumePreview })));
 
@@ -36,6 +38,7 @@ function App() {
   const [optimizePointIndex, setOptimizePointIndex] = useState(null);
   const [aiDraft, setAiDraft] = useState(null);
   const [resumeListOpen, setResumeListOpen] = useState(false);
+  const [historyOpen, setHistoryOpen] = useState(false);
   const previewTimer = useRef();
 
   useEffect(() => {
@@ -53,6 +56,7 @@ function App() {
     setSavedAt(`已保存 ${new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })}`);
   };
   const applyImport = draft => {
+    createSnapshot('导入前');
     setData(normalizeResume(draft));
     setImportOpen(false);
     setSavedAt('已应用导入草稿，请检查内容后保存');
@@ -73,8 +77,9 @@ function App() {
     setPreviewVisible(false);
     previewTimer.current = window.setTimeout(() => setPreviewMounted(false), 240);
   };
-  const applyAiDraft = () => {
-    setData(current => normalizeResume({ ...current, ...aiDraft.data }));
+  const applyAiDraft = fields => {
+    createSnapshot('AI 优化前');
+    setData(current => normalizeResume(mergeDraft(current, aiDraft.data, fields)));
     setAiDraft(null);
     setSavedAt('已应用 AI 优化结果');
   };
@@ -108,9 +113,32 @@ function App() {
   };
   const renameResume = (id, name) => setWorkspace(current => { const next = { ...current, resumes: current.resumes.map(item => item.id === id ? { ...item, name } : item) }; saveWorkspace(next); return next; });
   const deleteResume = id => setWorkspace(current => { const resumes = current.resumes.filter(item => item.id !== id); const activeId = current.activeId === id ? resumes[0].id : current.activeId; const next = { activeId, resumes }; saveWorkspace(next); if (current.activeId === id) setData(resumes[0].data); return next; });
+  const createSnapshot = label => {
+    setWorkspace(current => {
+      const snapshot = createHistorySnapshot(data, label);
+      const next = { ...current, resumes: current.resumes.map(item => item.id === current.activeId ? { ...item, history: [snapshot, ...(item.history || [])].slice(0, MAX_RESUME_HISTORY) } : item) };
+      saveWorkspace(next);
+      return next;
+    });
+    setSavedAt('已创建历史快照');
+  };
+  const restoreHistory = snapshotId => {
+    const active = workspace.resumes.find(item => item.id === workspace.activeId);
+    const snapshot = active?.history?.find(item => item.id === snapshotId);
+    if (!snapshot) return;
+    setData(normalizeResume(snapshot.data));
+    setHistoryOpen(false);
+    setSavedAt('已恢复历史版本');
+  };
+  const deleteHistory = snapshotId => setWorkspace(current => {
+    const next = { ...current, resumes: current.resumes.map(item => item.id === current.activeId ? { ...item, history: (item.history || []).filter(snapshot => snapshot.id !== snapshotId) } : item) };
+    saveWorkspace(next);
+    return next;
+  });
+  const activeResume = workspace.resumes.find(item => item.id === workspace.activeId);
 
   return <main className={`app${previewMounted ? ' has-preview' : ''}`}>
-    <WorkspaceHeader savedAt={savedAt} previewOpen={previewVisible} onTogglePreview={previewVisible ? hidePreview : showPreview} onImport={() => setImportOpen(true)} onLlmConfig={() => setLlmConfigOpen(true)} onResumes={() => setResumeListOpen(true)} onOptimize={() => openOptimize()} onExportMarkdown={() => { save(); exportMarkdown(data); }} onExportPdf={confirmPdfExport} />
+    <WorkspaceHeader savedAt={savedAt} previewOpen={previewVisible} onTogglePreview={previewVisible ? hidePreview : showPreview} onImport={() => setImportOpen(true)} onLlmConfig={() => setLlmConfigOpen(true)} onResumes={() => setResumeListOpen(true)} onHistory={() => setHistoryOpen(true)} onSnapshot={() => createSnapshot('手动快照')} onOptimize={() => openOptimize()} onExportMarkdown={() => { save(); exportMarkdown(data); }} onExportPdf={confirmPdfExport} />
     <ResumeEditor data={data} onChange={setData} onOptimize={openOptimize} />
     {previewMounted && <div className={`preview-panel${previewVisible ? ' is-visible' : ''}`}><Suspense fallback={<div className="preview-loading">正在加载预览...</div>}><ResumePreview data={data} /></Suspense></div>}
     {importOpen && <Suspense fallback={null}><ImportDialog templateId={data.templateId} onApply={applyImport} onClose={() => setImportOpen(false)} /></Suspense>}
@@ -118,6 +146,7 @@ function App() {
     {optimizeOpen && <OptimizeDialog open data={data} llmConfig={llmConfig} initialScope={optimizeScope} targetIndex={optimizeIndex} targetField={optimizeField} targetPointIndex={optimizePointIndex} onClose={() => setOptimizeOpen(false)} onOptimized={(draft, scope, meta) => { setOptimizeOpen(false); setAiDraft({ data: draft, scope, meta, targetIndex: optimizeIndex }); }} />}
     <OptimizeDiffDialog original={data} draft={aiDraft?.data} scope={aiDraft?.scope} targetIndex={aiDraft?.targetIndex} onApply={applyAiDraft} onClose={() => setAiDraft(null)} />
     <ResumeListDialog open={resumeListOpen} workspace={workspace} onSelect={selectResume} onCreate={createNewResume} onRename={renameResume} onDelete={deleteResume} onClose={() => setResumeListOpen(false)} />
+    {historyOpen && <Suspense fallback={null}><ResumeHistoryDialog open resume={activeResume} onRestore={restoreHistory} onDelete={deleteHistory} onClose={() => setHistoryOpen(false)} /></Suspense>}
   </main>;
 }
 
