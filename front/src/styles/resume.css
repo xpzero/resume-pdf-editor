@@ -1,0 +1,42 @@
+.preview-wrap { display: flex; justify-content: center; overflow: auto; padding: 34px; }
+.preview-panel { min-width: 0; overflow: hidden; opacity: 0; transform: translateX(28px); transition: opacity .24s ease, transform .24s ease; }
+.preview-panel.is-visible { opacity: 1; transform: translateX(0); }
+.preview-loading { display: grid; place-items: center; min-height: 100vh; color: #647384; }
+.preview-close { position: fixed; top: 16px; right: 16px; z-index: 3; }
+.resume {
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 11.5mm 11mm 13mm;
+  background: #fff;
+  box-shadow: 0 4px 24px #8391a340;
+  font-size: 11.2pt;
+  line-height: 1.4;
+}
+.resume header { display: grid; grid-template-columns: 27% 73%; min-height: 30mm; align-items: start; }
+.resume h1 { margin: 4mm 0 0; font-size: 34pt; font-weight: 400; letter-spacing: .05em; line-height: 1; }
+.contact { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 6mm; row-gap: 2mm; padding-top: 2mm; }
+.contact p { min-width: 0; margin: 0; font-size: 11.2pt; line-height: 1.35; overflow-wrap: anywhere; }
+.contact .contact-blog { grid-column: 1 / -1; }
+.bluebar { height: 3.2mm; margin: 0 -11mm 2.4mm; background: #2d82d2; }
+.resume-section { margin: 0 0 2.6mm; }
+.resume-section h2 { display: flex; align-items: center; gap: 3mm; margin: 2.8mm 0 1.7mm 7mm; color: #2d82d2; font-size: 11.5pt; font-weight: 400; }
+.resume-section h2::after { height: 1px; flex: 1; background: #e8f1fa; content: ""; }
+.education, .jobs > div, .project-head { display: grid; align-items: center; }
+.education { grid-template-columns: 34% 30% 23% 13%; padding: 1mm 0; text-align: center; background: #fbfcfd; }
+.education span:first-child, .jobs span:first-child, .project-head span:first-child { text-align: left; }
+.skills { margin: 0; padding-left: 7mm; list-style: "➢  "; }
+.skills li { padding-left: 1.5mm; margin: 1.1mm 0; }
+.jobs > div { grid-template-columns: 23% 62% 15%; padding: .55mm 0; text-align: center; }
+.jobs > div:nth-child(odd) { background: #fbfcfd; }
+.project { margin: 2.3mm 0 2.9mm; }
+.project-head { grid-template-columns: 20% 63% 17%; padding: .45mm 0; text-align: center; border-bottom: 1px solid #eef3f8; }
+.project-head b { font-weight: 600; }
+.project p { margin: 1.1mm 0 .8mm; text-indent: 2em; text-align: justify; letter-spacing: .01em; }
+.project ol { margin: 0 0 0 7.5mm; padding-left: 4.5mm; }
+.project li { margin: .45mm 0; padding-left: .5mm; text-align: justify; }
+.evaluation { margin: 0; padding: 1.4mm 2mm; text-align: justify; text-indent: 2em; background: #fbfcfd; }
+@media (max-width: 1000px) {
+  .preview-wrap { padding: 16px; }
+  .resume { transform-origin: top center; }
+}

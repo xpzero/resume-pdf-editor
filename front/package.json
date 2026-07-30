@@ -1,0 +1,19 @@
+{
+  "name": "front",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "antd": "^6.5.2",
+    "pdfjs-dist": "^6.1.200",
+    "react": "latest",
+    "react-dom": "latest",
+    "vite": "latest"
+  }
+}
