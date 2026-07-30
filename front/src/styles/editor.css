@@ -102,6 +102,10 @@
 .resume-history-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border-bottom: 1px solid #e2e8f0; }
 .resume-history-actions > div { display: flex; align-items: center; gap: 8px; }
 .resume-history-actions > div:first-child { display: grid; gap: 2px; }
+.resume-history-actions .ant-btn-primary { color: #fff; background: #2563eb; border-color: #2563eb; }
+.resume-history-actions .ant-btn-primary:hover { color: #fff !important; background: #1d4ed8 !important; border-color: #1d4ed8 !important; }
+.resume-history-actions .ant-btn-dangerous { color: #dc2626; background: #fff; border-color: #dc2626; }
+.resume-history-actions .ant-btn-dangerous:hover { color: #fff !important; background: #dc2626 !important; border-color: #dc2626 !important; }
 .resume-history-document { max-height: 58vh; padding: 16px; overflow: auto; background: #eef2f7; }
 .resume-history-document .preview-wrap { min-width: 640px; }
 .editor .ant-input, .editor .ant-input-affix-wrapper, .editor .ant-select-selector { border-radius: 6px !important; border-color: var(--line) !important; box-shadow: none !important; font-weight: 400 !important; }
