@@ -1,6 +1,6 @@
 function emptyResume(templateId) {
   return {
-    templateId, name: '', birth: '', phone: '', role: '', email: '', blog: '',
+    templateId, name: '', birth: '', phone: '', role: '', email: '', blog: '', github: '',
     school: '', education: '', major: '', educationDate: '', skills: [], jobs: [], projects: [], customSections: [], evaluation: ''
   };
 }
@@ -28,7 +28,7 @@ export function importMarkdown(markdown, templateId = 'classic') {
   const title = markdown.match(/^#\s+(.+?)的简历\s*$/m)?.[1]?.trim();
   if (title) data.name = title;
   const profile = section(allSections, '基本信息');
-  const fields = { '出生年月': 'birth', '个人电话': 'phone', '意向岗位': 'role', '电子邮箱': 'email', '个人博客': 'blog' };
+  const fields = { '出生年月': 'birth', '个人电话': 'phone', '意向岗位': 'role', '电子邮箱': 'email', '个人博客': 'blog', 'GitHub': 'github' };
   listItems(profile).forEach(item => {
     const [label, ...value] = item.split(/[：:]/);
     if (fields[label]) data[fields[label]] = value.join('：').trim();

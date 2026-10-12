@@ -1,7 +1,7 @@
 export const defaultResume = {
   templateId: 'classic',
   name: '陈默', birth: '1995.08', phone: '13800001234', role: '产品设计师',
-  email: 'chenmo.demo@example.com', blog: 'https://example.com/chenmo',
+  email: 'chenmo.demo@example.com', blog: 'https://example.com/chenmo', github: 'https://github.com/chenmo',
   school: '星海大学', education: '本科', major: '软件工程', educationDate: '2014.09-2018.06',
   educations: [{ date: '2014.09-2018.06', school: '星海大学', degree: '本科', major: '软件工程' }],
   skills: [

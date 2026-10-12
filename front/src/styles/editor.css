@@ -30,7 +30,12 @@
 .editor section.compact-section:hover { border-color: var(--line); }
 .editor-section-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 .editor-section-title h2 { margin-bottom: 0; }
-.education-edit { display: grid; gap: 8px; padding: 10px 0; border-bottom: 1px solid #edf1f5; }
+.education-edit { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 8px; padding: 10px 0; border-bottom: 1px solid #edf1f5; }
+.education-edit > .drag-handle { align-self: center; }
+.education-edit > .fields, .education-edit > .ant-btn { grid-column: 2; }
+.education-edit > .ant-btn { justify-self: start; }
+.drag-placeholder { min-height: 40px; margin: 6px 0; border: 1.5px dashed #93c5fd; background: #eff6ff; border-radius: 8px; animation: drag-placeholder-in .18s ease; }
+@keyframes drag-placeholder-in { from { opacity: 0; transform: scale(.97); } to { opacity: 1; transform: scale(1); } }
 .resume-checks { margin-top: 20px; }
 .resume-checks ul { margin: 6px 0 0; padding-left: 18px; }
 .editor h2 { display: block; margin: 0 0 10px; color: var(--ink); font-size: 14px; font-weight: 700; letter-spacing: 0; }
@@ -40,7 +45,7 @@
 .field { display: grid; gap: 6px; color: var(--muted); font-size: 12px; font-weight: 600; }
 .field-label { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .line-edit { display: flex; gap: 8px; padding: 10px 0; margin: 0; border-bottom: 1px solid #f1f5f9; }
-.line-edit.is-dragging { opacity: .45; }
+.line-edit.is-dragging, .education-edit.is-dragging, .job-edit.is-dragging, .custom-section-edit.is-dragging { opacity: .45; }
 .drag-handle { display: grid; width: 28px; flex: 0 0 28px; place-items: center; align-self: center; color: #9ca3af; cursor: grab; }
 .drag-handle:active { cursor: grabbing; }
 .drag-handle svg { width: 17px; height: 17px; }
@@ -56,14 +61,20 @@
 .edit-icon svg { width: 16px; height: 16px; }
 .line-edit .ant-btn { align-self: center; }
 .line-edit.match-optimize-height .line-ai-action { align-self: stretch; height: auto; }
-.job-edit { display: grid; grid-template-columns: .95fr 1.3fr .9fr auto; gap: 8px; padding: 10px 0; margin: 0; border-bottom: 1px solid #f1f5f9; }
+.job-edit { display: grid; grid-template-columns: 28px .95fr 1.3fr .9fr auto; gap: 8px; padding: 10px 0; margin: 0; border-bottom: 1px solid #f1f5f9; }
+.job-edit > .drag-handle { align-self: center; }
 .job-actions { display: flex; align-items: center; gap: 3px; }
 .job-actions .ant-btn { height: 40px; }
 .project-collapse { margin-bottom: 10px; }
 .project-collapse .ant-collapse-content-box { padding-top: 16px !important; }
 .project-label { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.project-label > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.project-label-title { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.project-label .project-label-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .project-label > div { display: flex; gap: 4px; }
+.drag-placeholder-item > .ant-collapse-header { padding: 0 !important; color: inherit; cursor: default; }
+.drag-placeholder-item > .ant-collapse-header .ant-collapse-header-text { min-width: 0; }
+.drag-placeholder-item .drag-placeholder { margin: 8px 0; }
+.custom-section-head { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 8px; align-items: center; }
 .project-fields { gap: 12px; }
 .project-points-title { margin-top: 4px; color: var(--muted); font-size: 12px; font-weight: 600; }
 .custom-section-edit { display: grid; gap: 10px; padding: 14px 0; margin: 0; background: transparent; border-bottom: 1px solid #f1f5f9; border-radius: 0; }
@@ -139,8 +150,9 @@
   .fields.two, .ai-diff-values { grid-template-columns: 1fr; }
   .field-control { grid-template-columns: 1fr; }
   .field-control .ant-btn { height: 40px; }
-  .job-edit { grid-template-columns: 1fr; }
-  .job-actions { justify-content: flex-end; }
+  .job-edit { grid-template-columns: 28px minmax(0, 1fr); }
+  .job-edit > .ant-input, .job-edit > .ant-select, .job-actions { grid-column: 2; }
+  .job-actions { justify-self: end; }
   .line-edit { align-items: flex-start; flex-wrap: wrap; }
   .resume-history { grid-template-columns: 1fr; }
   .resume-history-list { max-height: 150px; border-right: 0; border-bottom: 1px solid #e2e8f0; }

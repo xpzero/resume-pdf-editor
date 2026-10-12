@@ -4,14 +4,22 @@ function ResumeSection({ title, children }) {
   return <section className="resume-section"><h2>{title}</h2>{children}</section>;
 }
 
-const chineseLabels = { birth: '出生年月', role: '意向岗位', phone: '个人电话', email: '电子邮箱', blog: '个人博客', education: '教育经历', skills: '相关技能', jobs: '工作经历', projects: '项目经历', evaluation: '个人评价' };
-const englishLabels = { birth: 'Born', role: 'Target role', phone: 'Phone', email: 'Email', blog: 'Portfolio', education: 'Education', skills: 'Skills', jobs: 'Experience', projects: 'Projects', evaluation: 'Profile' };
+const chineseLabels = { birth: '出生年月', role: '意向岗位', phone: '个人电话', email: '电子邮箱', blog: '个人博客', github: 'GitHub', education: '教育经历', skills: '相关技能', jobs: '工作经历', projects: '项目经历', evaluation: '个人评价' };
+const englishLabels = { birth: 'Born', role: 'Target role', phone: 'Phone', email: 'Email', blog: 'Portfolio', github: 'GitHub', education: 'Education', skills: 'Skills', jobs: 'Experience', projects: 'Projects', evaluation: 'Profile' };
+
+const contactFields = [
+  ['birth', ''],
+  ['role', 'contact-role'],
+  ['phone', ''],
+  ['email', ''],
+  ['blog', 'contact-blog'],
+  ['github', 'contact-blog']
+];
 
 function Contact({ data, labels, className = 'contact' }) {
+  const fields = contactFields.filter(([key]) => (data[key] || '').trim());
   return <div className={className}>
-    <p>{labels.birth}: {data.birth}</p><p className="contact-role">{labels.role}: {data.role}</p>
-    <p>{labels.phone}: {data.phone}</p><p>{labels.email}: {data.email}</p>
-    <p className="contact-blog">{labels.blog}: {data.blog}</p>
+    {fields.map(([key, cls]) => <p key={key} className={cls}>{labels[key]}: {data[key]}</p>)}
   </div>;
 }
 
